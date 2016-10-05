@@ -11,7 +11,16 @@ console.log('serial.js');
   };
 
 //{ 'vendorId': 0x2341, 'productId': 0x8037 },
+
   serial.requestPort = function() {
+  
+  
+    console.log('navigator.usb.getDevices ...');
+  	navigator.usb.getDevices().then(devices => {
+  	  console.log(devices);
+  	});
+  
+  
     const filters = [
       { 'vendorId': 0x2c69, 'productId': 0x5750 },
       { 'vendorId': 0x15A2, 'productId': 0x0101 },
@@ -21,7 +30,7 @@ console.log('serial.js');
     return navigator.usb.requestDevice({ 'filters': filters }).then(
       device => new serial.Port(device)
     );
-  }
+  };
 
   serial.Port = function(device) {
     this.device_ = device;
