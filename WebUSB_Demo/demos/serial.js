@@ -17,8 +17,12 @@ console.log('serial.js');
   
     console.log('navigator.usb.getDevices ...');
   	navigator.usb.getDevices().then(devices => {
-  	  console.log(devices);
-  	});
+  	devices.map(device => {
+  	  console.log(device.productName);      // "Arduino Micro"
+  	  console.log(device.manufacturerName); // "Arduino LLC"
+ 	 });
+	})
+
   
   
     const filters = [
